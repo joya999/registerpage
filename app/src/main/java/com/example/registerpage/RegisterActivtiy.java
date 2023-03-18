@@ -71,7 +71,7 @@ public class RegisterActivtiy extends AppCompatActivity {
 
         if (Academicemail.matches(AcademicemailPattern))
         {
-            inputAcademicemail.setError("Enter Connext Academicemail");
+            inputAcademicemail.setError("Enter Connext Academicemail ");
         }
         else if (password.isEmpty() || password.length()<6){
             inputpassword.setError("Enter Proper Password");
