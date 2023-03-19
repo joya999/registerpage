@@ -1,6 +1,5 @@
-package com.example.registerpage;
+package com.example.registerpage.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,19 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.registerpage.R;
+import com.example.registerpage.models.Level;
+
 import java.util.ArrayList;
 
-public class RCAdapter extends RecyclerView.Adapter<RCAdapter.RCViewHolder> {
+public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.RCViewHolder> {
+    ArrayList<Level> levels;
 
-    Context context;
-
-    public RCAdapter(Context context, ArrayList<RCModel> modelArrayList) {
-        this.context = context;
-        this.modelArrayList = modelArrayList;
+    public LevelsAdapter(ArrayList<Level> modelArrayList) {
+        this.levels = modelArrayList;
     }
-
-    ArrayList<RCModel> modelArrayList;
-
 
     @NonNull
     @Override
@@ -35,19 +32,23 @@ public class RCAdapter extends RecyclerView.Adapter<RCAdapter.RCViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RCViewHolder holder, int position) {
-        RCModel rcModel = modelArrayList.get(position);
-        holder.rc_title.setText(rcModel.title);
-        holder.rc_image.setImageResource(rcModel.image);
+        Level level = levels.get(position);
+        holder.rc_title.setText(level.getName());
+        //holder.rc_image.setImageResource(rcModel.image);
     }
 
     @Override
     public int getItemCount() {
-        return modelArrayList.size();
+        return levels.size();
     }
 
     public void notifyDataSetChange() {
     }
 
+    public void addItem(Level level){
+        levels.add(level);
+        notifyItemInserted(levels.size() - 1);
+    }
     public class RCViewHolder extends RecyclerView.ViewHolder {
         ImageView rc_image;
         TextView rc_title;

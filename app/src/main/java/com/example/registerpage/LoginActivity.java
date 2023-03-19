@@ -55,8 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog=new ProgressDialog(this);
         mAuth=FirebaseAuth.getInstance();
         mUser= mAuth.getCurrentUser();
-
-
+        checkIfLogin();
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,15 +93,18 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void checkIfLogin() {
+        if (mUser != null){
+            sendUserToNextActivity();
+        }
+    }
+
     private void perforLogin() {
 
         String Academicemail = inputAcademicemail.getText().toString();
         String password = inputpassword.getText().toString();
 
-
-
-
-        if (Academicemail.matches(AcademicemailPattern))
+        if (!Academicemail.matches(AcademicemailPattern))
         {
             inputAcademicemail.setError("Enter Connext Academicemail");
         }
@@ -139,7 +141,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     private void sendUserToNextActivity() {
-        Intent intent= new Intent(LoginActivity.this,LoginActivity.class);
+        Intent intent= new Intent(LoginActivity.this,MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
