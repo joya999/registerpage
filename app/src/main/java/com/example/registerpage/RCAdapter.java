@@ -55,7 +55,6 @@ public class RCAdapter extends RecyclerView.Adapter<RCAdapter.RCViewHolder> {
         public RCViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            rc_image = itemView.findViewById(R.id.rc_image);
             rc_title = itemView.findViewById(R.id.rc_title);
 
 

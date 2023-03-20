@@ -56,7 +56,6 @@ public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.RCViewHold
         public RCViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            rc_image = itemView.findViewById(R.id.rc_image);
             rc_title = itemView.findViewById(R.id.rc_title);
 
 

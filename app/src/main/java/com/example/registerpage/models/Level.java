@@ -1,9 +1,11 @@
 package com.example.registerpage.models;
 
+import java.util.List;
+
 public class Level {
 
-    private int id;
-    private String name;
+    public int id;
+    public String name;
 
     public void setId(int id) {
         this.id = id;
@@ -21,8 +23,8 @@ public class Level {
         return name;
     }
 
-    public Level(){}
 
+    public Level(){}
     public Level(int id, String name) {
         this.id = id;
         this.name = name;
