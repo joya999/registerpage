@@ -6,7 +6,7 @@ public class Level {
 
     public int id;
     public String name;
-
+    public String key;
     public void setId(int id) {
         this.id = id;
     }

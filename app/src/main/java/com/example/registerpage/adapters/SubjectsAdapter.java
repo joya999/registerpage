@@ -12,67 +12,62 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.registerpage.OnItemClickListener;
 import com.example.registerpage.R;
 import com.example.registerpage.models.Level;
+import com.example.registerpage.models.Subject;
 
 import java.util.ArrayList;
 
-public class LevelsAdapter extends RecyclerView.Adapter<LevelsAdapter.RCViewHolder> {
-    ArrayList<Level> levels;
-    private OnItemClickListener<Level> listener;
-    public void setOnItemClickListener(OnItemClickListener<Level> listener){
+public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.RCViewHolder> {
+    ArrayList<Subject> subjects;
+
+    private OnItemClickListener<Subject> listener;
+    public void setOnItemClickListener(OnItemClickListener<Subject> listener){
         this.listener = listener;
     }
-    public LevelsAdapter(ArrayList<Level> modelArrayList) {
-        this.levels = modelArrayList;
+    public SubjectsAdapter(ArrayList<Subject> modelArrayList) {
+        this.subjects = modelArrayList;
     }
-
-
 
     @NonNull
     @Override
     public RCViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_level, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_subject, parent, false);
         return new RCViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RCViewHolder holder, int position) {
-        Level level = levels.get(position);
-        holder.rc_title.setText(level.getName());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onItemClick(level);
-            }
+        Subject subject = subjects.get(position);
+        holder.tvTitle.setText(subject.name);
+        holder.tvCode.setText(subject.code);
+
+        holder.itemView.setOnClickListener(view -> {
+          listener.onItemClick(subject);
         });
     }
 
     @Override
     public int getItemCount() {
-        return levels.size();
+        return subjects.size();
     }
 
-    public void notifyDataSetChange() {
-    }
-
-    public void addItem(Level level){
-        levels.add(level);
-        notifyItemInserted(levels.size() - 1);
+    public void addItem(Subject subject){
+        subjects.add(subject);
+        notifyItemInserted(subjects.size() - 1);
     }
     public class RCViewHolder extends RecyclerView.ViewHolder {
-        ImageView rc_image;
-        TextView rc_title;
+
+        TextView tvTitle;
+        TextView tvCode;
 
         public RCViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            rc_title = itemView.findViewById(R.id.rc_title);
-
+            tvTitle = itemView.findViewById(R.id.tv_name);
+            tvCode = itemView.findViewById(R.id.tv_code);
 
         }
     }
-
-
 }
 

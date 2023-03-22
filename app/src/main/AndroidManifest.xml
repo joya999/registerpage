@@ -12,6 +12,15 @@
         android:theme="@style/Theme.Registerpage"
         tools:targetApi="31">
         <activity
+            android:name=".ui.FilesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.FilesGroupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SubjectsActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -19,16 +28,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".RegisterActivtiy"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>

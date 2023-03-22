@@ -6,6 +6,7 @@ public class User {
     private String email;
     private String name;
 
+
     public User(){}
     public void setAcademicNumber(Long academicNumber) {
         this.academicNumber = academicNumber;

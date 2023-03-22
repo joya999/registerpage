@@ -3,17 +3,16 @@ package com.example.registerpage;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.registerpage.adapters.LevelsAdapter;
 import com.example.registerpage.databinding.ActivityMainBinding;
 import com.example.registerpage.models.Level;
 import com.example.registerpage.models.User;
+import com.example.registerpage.ui.SubjectsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -45,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
+
         levelsAdapter = new LevelsAdapter(new ArrayList<>());
         binding.rvLevels.setAdapter(levelsAdapter);
 
@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         userRef = mDatabase.child("users").child(mUser.getUid());
 
 
-        Log.d("moetazTag", "onChildAdded:" + levelsRef.toString());
         findViewById(R.id.btn_sign_out).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +64,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setUserData();
+        adapterClick();
+    }
+
+    private void adapterClick() {
+        levelsAdapter.setOnItemClickListener(item -> {
+            launchSubjectsScreen(item);
+        });
+    }
+
+    private void launchSubjectsScreen(Level item) {
+        Intent intent = new Intent(this , SubjectsActivity.class);
+        intent.putExtra(Constants.LEVEL_ID , item.key);
+        startActivity(intent);
     }
 
     private void setUserData() {
@@ -101,8 +113,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
             Level level = dataSnapshot.getValue(Level.class);
+            level.key = dataSnapshot.getKey();
             levelsAdapter.addItem(level);
-            Log.d("moetazTag", "onChildAdded:" + level.getName());
+
         }
 
         @Override

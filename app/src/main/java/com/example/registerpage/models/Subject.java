@@ -5,6 +5,7 @@ public class Subject {
     public String code;
     public String name;
 
+    public String key;
     public void setCode(String code) {
         this.code = code;
     }
