@@ -10,4 +10,9 @@ public class Constants {
 
     public static final String LEVEL_ID = "level_id";
     public static final String SUBJECT_ID = "subject_id";
+    public static final String FILES_GROUP_ID = "file_group_id";
+
+    public static final String LEVEL_NAME_KEY = "level_name_key";
+    public static final String SUBJECT_NAME_KEY = "level_name_key";
+    public static final String FILES_GROUP_NAME_KEY = "level_name_key";
 }

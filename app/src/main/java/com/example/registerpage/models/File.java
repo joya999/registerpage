@@ -2,6 +2,7 @@ package com.example.registerpage.models;
 
 public class File {
 
-    private String key;
-    private String name;
+    public String key;
+    public String name;
+    public String url;
 }

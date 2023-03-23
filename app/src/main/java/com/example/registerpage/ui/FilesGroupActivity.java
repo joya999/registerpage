@@ -2,10 +2,13 @@ package com.example.registerpage.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.registerpage.Constants;
+import com.example.registerpage.OnItemClickListener;
 import com.example.registerpage.R;
 import com.example.registerpage.adapters.FilesGroupAdapter;
 import com.example.registerpage.adapters.LevelsAdapter;
@@ -29,6 +32,8 @@ public class FilesGroupActivity extends AppCompatActivity {
 
     private String levelKey;
     private String subjectKey;
+    private String subjectName;
+
 
     private FilesGroupAdapter filesGroupAdapter;
 
@@ -42,7 +47,9 @@ public class FilesGroupActivity extends AppCompatActivity {
 
         levelKey = getIntent().getStringExtra(Constants.LEVEL_ID);
         subjectKey = getIntent().getStringExtra(Constants.SUBJECT_ID);
+        subjectName = getIntent().getStringExtra(Constants.SUBJECT_NAME_KEY);
 
+        binding.tvTitle.setText(subjectName);
         filesGroupAdapter = new FilesGroupAdapter(new ArrayList<>());
         binding.rvFiles.setAdapter(filesGroupAdapter);
 
@@ -53,12 +60,26 @@ public class FilesGroupActivity extends AppCompatActivity {
                 .child(subjectKey).child(Constants.FIREBASE_FILES_GROUP_KEY);
 
         filesGroupRef.addChildEventListener(childEventListener);
+
+        adapterClick();
+    }
+
+    private void adapterClick() {
+        filesGroupAdapter.setOnItemClickListener(item -> {
+            Intent intent = new Intent(this, FilesActivity.class);
+            intent.putExtra(Constants.LEVEL_ID, levelKey);
+            intent.putExtra(Constants.SUBJECT_ID, subjectKey);
+            intent.putExtra(Constants.FILES_GROUP_ID, item.key);
+            intent.putExtra(Constants.FILES_GROUP_NAME_KEY, item.name);
+            startActivity(intent);
+        });
     }
 
     ChildEventListener childEventListener = new ChildEventListener() {
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
             FilesGroup filesGroup = dataSnapshot.getValue(FilesGroup.class);
+            filesGroup.key = dataSnapshot.getKey();
 
             filesGroupAdapter.addItem(filesGroup);
 

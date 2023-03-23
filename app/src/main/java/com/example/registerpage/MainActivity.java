@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     private void launchSubjectsScreen(Level item) {
         Intent intent = new Intent(this , SubjectsActivity.class);
         intent.putExtra(Constants.LEVEL_ID , item.key);
+        intent.putExtra(Constants.LEVEL_NAME_KEY , item.name);
         startActivity(intent);
     }
 

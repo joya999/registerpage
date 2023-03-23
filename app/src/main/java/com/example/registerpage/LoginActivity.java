@@ -42,10 +42,6 @@ public class LoginActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
-
-
-
         ImageView googlebtn = findViewById(R.id.btnGoogle);
         ImageView facebookbtn = findViewById(R.id.btnFacebook);
         TextView btn=findViewById(R.id.textViewSignUp);

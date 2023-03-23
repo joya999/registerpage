@@ -8,14 +8,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.registerpage.OnItemClickListener;
 import com.example.registerpage.R;
 import com.example.registerpage.models.File;
 import com.example.registerpage.models.FilesGroup;
+import com.example.registerpage.models.Level;
 
 import java.util.ArrayList;
 
 public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.RCViewHolder> {
     ArrayList<File> files;
+
+    private OnItemClickListener<File> listener;
+    public void setOnItemClickListener(OnItemClickListener<File> listener){
+        this.listener = listener;
+    }
 
     public FilesAdapter(ArrayList<File> modelArrayList) {
         this.files = modelArrayList;
@@ -33,7 +40,10 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.RCViewHolder
     @Override
     public void onBindViewHolder(@NonNull RCViewHolder holder, int position) {
         File file = files.get(position);
-
+        holder.tvTitle.setText(file.name);
+        holder.itemView.setOnClickListener(view -> {
+            listener.onItemClick(file);
+        });
     }
 
     @Override
@@ -48,8 +58,6 @@ public class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.RCViewHolder
     public class RCViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTitle;
-
-
         public RCViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_name);

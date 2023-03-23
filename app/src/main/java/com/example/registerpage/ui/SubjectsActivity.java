@@ -29,6 +29,7 @@ public class SubjectsActivity extends AppCompatActivity {
     private DatabaseReference subjectsRef;
 
     private String levelKey;
+    private String levelNameKey;
     private SubjectsAdapter subjectsAdapter;
     private ActivitySubjectsBinding binding;
 
@@ -43,8 +44,12 @@ public class SubjectsActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         levelKey = getIntent().getStringExtra("level_id");
+        levelNameKey = getIntent().getStringExtra(Constants.LEVEL_NAME_KEY);
 
-        subjectsRef = mDatabase.child("levels").child(levelKey).child("subjects");
+        binding.tvTitle.setText(levelNameKey);
+
+        subjectsRef = mDatabase.child(Constants.FIREBASE_LEVELS_KEY)
+                .child(levelKey).child("subjects");
 
         subjectsRef.addChildEventListener(childEventListener);
         adapterClick();
@@ -55,6 +60,7 @@ public class SubjectsActivity extends AppCompatActivity {
             Intent intent = new Intent(this, FilesGroupActivity.class);
             intent.putExtra(Constants.LEVEL_ID, levelKey);
             intent.putExtra(Constants.SUBJECT_ID, item.key);
+            intent.putExtra(Constants.SUBJECT_NAME_KEY, item.name);
             startActivity(intent);
 
         });
