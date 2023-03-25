@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">registerpage</string>
     <string name="my_account">My Account</string>
+    <string name="faculty_of_science">Faculty of Science</string>
+    <string name="log_in">Log in</string>
 </resources>
