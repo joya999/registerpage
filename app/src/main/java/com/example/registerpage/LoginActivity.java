@@ -25,7 +25,6 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView createnewAccount;
     EditText inputAcademicemail,inputpassword,inputConfirmPassword;
-    Button btnLogin;
     String AcademicemailPattern ="[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     ProgressDialog progressDialog;
@@ -41,50 +40,18 @@ public class LoginActivity extends AppCompatActivity {
         createnewAccount=findViewById(R.id.createnewAccount);
 
       //  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        ImageView googlebtn = findViewById(R.id.btnGoogle);
-        ImageView facebookbtn = findViewById(R.id.btnFacebook);
-        TextView btn=findViewById(R.id.textViewSignUp);
         View btnlogin = findViewById(R.id.btnlogin);
         inputAcademicemail =findViewById(R.id.inputAcademicemail);
         inputpassword =findViewById(R.id.inputpassword);
         progressDialog=new ProgressDialog(this);
         mAuth=FirebaseAuth.getInstance();
         mUser= mAuth.getCurrentUser();
-        checkIfLogin();
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,RegisterActivtiy.class));
-            }
-        });
-
-
-
-        googlebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "google Login", Toast.LENGTH_SHORT).show();
-            }
-        });
-        facebookbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(getApplicationContext(), "facebook Login", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 perforLogin();
             }
         });
-
-
 
 
     }

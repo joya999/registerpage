@@ -121,7 +121,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:background="@drawable/btn_bg"
+        android:background="@drawable/shape_curved_orange"
         android:text="Register"
         android:textColorHighlight="@color/white"
         android:textColorLink="@color/white"
