@@ -12,6 +12,7 @@ import com.example.registerpage.adapters.LevelsAdapter;
 import com.example.registerpage.databinding.ActivityMainBinding;
 import com.example.registerpage.models.Level;
 import com.example.registerpage.models.User;
+import com.example.registerpage.ui.MyAccountActivity;
 import com.example.registerpage.ui.SubjectsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -65,6 +66,14 @@ public class MainActivity extends AppCompatActivity {
 
         setUserData();
         adapterClick();
+        settingsClick();
+    }
+
+    private void settingsClick() {
+        binding.ivSettings.setOnClickListener(view ->{
+            Intent intent = new Intent(MainActivity.this , MyAccountActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void adapterClick() {
