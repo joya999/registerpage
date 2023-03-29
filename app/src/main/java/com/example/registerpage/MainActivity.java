@@ -56,14 +56,6 @@ public class MainActivity extends AppCompatActivity {
         query.addChildEventListener(childEventListener);
         userRef = mDatabase.child("users").child(mUser.getUid());
 
-
-        findViewById(R.id.btn_sign_out).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signOut();
-            }
-        });
-
         setUserData();
         adapterClick();
         settingsClick();

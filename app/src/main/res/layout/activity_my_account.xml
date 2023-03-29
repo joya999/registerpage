@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="5dp"
-            android:text="test@gmal.com"
+            android:text="test@gmail.com"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold"
