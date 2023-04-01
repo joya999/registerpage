@@ -22,6 +22,9 @@ public class MyAccountActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
         logoutClick();
+        binding.tvChangePassword.setOnClickListener(view -> {
+            launchChangePassword();
+        });
     }
 
     private void logoutClick() {
@@ -40,6 +43,10 @@ public class MyAccountActivity extends AppCompatActivity {
         finishAffinity();
         Intent intent = new Intent(MyAccountActivity.this, SplashActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+    private void launchChangePassword() {
+        Intent intent = new Intent(MyAccountActivity.this, ChangePasswordActivity.class);
         startActivity(intent);
     }
 }

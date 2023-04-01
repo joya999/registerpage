@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.registerpage.ui.ForgetPasswordActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
     TextView createnewAccount;
+    TextView tvFogetPassword;
     EditText inputAcademicemail,inputpassword,inputConfirmPassword;
     String AcademicemailPattern ="[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -43,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         View btnlogin = findViewById(R.id.btnlogin);
         inputAcademicemail =findViewById(R.id.inputAcademicemail);
         inputpassword =findViewById(R.id.inputpassword);
+        tvFogetPassword =findViewById(R.id.tv_forget);
         progressDialog=new ProgressDialog(this);
         mAuth=FirebaseAuth.getInstance();
         mUser= mAuth.getCurrentUser();
@@ -51,6 +54,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 perforLogin();
             }
+        });
+
+        tvFogetPassword.setOnClickListener(view -> {
+            launchForgetPassword();
         });
 
 
@@ -106,6 +113,11 @@ public class LoginActivity extends AppCompatActivity {
     private void sendUserToNextActivity() {
         Intent intent= new Intent(LoginActivity.this,MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    private void launchForgetPassword() {
+        Intent intent= new Intent(LoginActivity.this, ForgetPasswordActivity.class);
         startActivity(intent);
     }
 }

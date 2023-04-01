@@ -7,6 +7,7 @@ public class Constants {
     public static final String FIREBASE_FILES_GROUP_KEY = "filesGroup";
     public static final String FIREBASE_FILES_KEY = "files";
     public static final String FIREBASE_USERS_KEY = "users";
+    public static final String FIREBASE_ACADEMIC_NUMBER_KEY = "academicNumber";
 
     public static final String LEVEL_ID = "level_id";
     public static final String SUBJECT_ID = "subject_id";
