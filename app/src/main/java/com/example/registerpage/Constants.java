@@ -16,4 +16,5 @@ public class Constants {
     public static final String LEVEL_NAME_KEY = "level_name_key";
     public static final String SUBJECT_NAME_KEY = "level_name_key";
     public static final String FILES_GROUP_NAME_KEY = "level_name_key";
+    public static final String VIDEO_URL_KEY = "video_url_key";
 }

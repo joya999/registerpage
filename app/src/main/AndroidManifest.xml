@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Registerpage"
         tools:targetApi="31">
         <activity
+            android:name=".ui.VideoActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ForgetPasswordActivity"
             android:exported="false" />
         <activity

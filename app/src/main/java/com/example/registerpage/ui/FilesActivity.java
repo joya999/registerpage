@@ -2,6 +2,7 @@ package com.example.registerpage.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -64,7 +65,13 @@ public class FilesActivity extends AppCompatActivity {
 
     private void adapterClick() {
         filesAdapter.setOnItemClickListener(file -> {
-            openPdf(file.url , file.name);
+            if (file.type.equals("video")){
+                Intent intent = new Intent(this , VideoActivity.class);
+                intent.putExtra(Constants.VIDEO_URL_KEY , file.url);
+                startActivity(intent);
+            }else {
+                openPdf(file.url , file.name);
+            }
         });
     }
 
