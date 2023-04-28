@@ -25,6 +25,7 @@ public class VideoActivity extends AppCompatActivity {
         progressDialog=new ProgressDialog(this);
         progressDialog.setTitle("Loading");
         progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
         url = getIntent().getStringExtra(Constants.VIDEO_URL_KEY);
