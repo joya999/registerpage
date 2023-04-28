@@ -65,7 +65,7 @@ public class FilesActivity extends AppCompatActivity {
 
     private void adapterClick() {
         filesAdapter.setOnItemClickListener(file -> {
-            if (file.type.equals("video")){
+            if (file.type != null &&file.type.equals("video")){
                 Intent intent = new Intent(this , VideoActivity.class);
                 intent.putExtra(Constants.VIDEO_URL_KEY , file.url);
                 startActivity(intent);
