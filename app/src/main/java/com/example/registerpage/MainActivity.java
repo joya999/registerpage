@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     LevelsAdapter levelsAdapter;
     private DatabaseReference mDatabase;
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         levelsRef = mDatabase.child("levels");
         Query query = levelsRef.orderByChild("id");
         query.addChildEventListener(childEventListener);
+        toggleProgress(true);
         userRef = mDatabase.child("users").child(mUser.getUid());
 
         setUserData();
@@ -69,9 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void adapterClick() {
-        levelsAdapter.setOnItemClickListener(item -> {
-            launchSubjectsScreen(item);
-        });
+        levelsAdapter.setOnItemClickListener(this::launchSubjectsScreen);
     }
 
     private void launchSubjectsScreen(Level item) {
@@ -117,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             Level level = dataSnapshot.getValue(Level.class);
             level.key = dataSnapshot.getKey();
             levelsAdapter.addItem(level);
-
+            toggleProgress(false);
         }
 
         @Override
