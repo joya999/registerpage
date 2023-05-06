@@ -34,7 +34,11 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     private void resetPassword() {
         String email = binding.inputAcademicemail.getText().toString().trim();
-        if (!email.matches(AcademicemailPattern)) {
+        if (email.isEmpty()){
+            Toast.makeText(ForgetPasswordActivity.this
+                    , "Password must not be empty" , Toast.LENGTH_LONG).show();
+        }
+        else if (!email.matches(AcademicemailPattern)) {
             binding.inputAcademicemail.setError("Enter Connext Academicemail");
         } else {
             mAuth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {

@@ -17,27 +17,31 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private ActivityChangePasswordBinding binding;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityChangePasswordBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mAuth= FirebaseAuth.getInstance();
-        mUser= mAuth.getCurrentUser();
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
         changePasswordClick();
     }
 
     private void changePasswordClick() {
-        binding.btnlogin.setOnClickListener(view ->{
+        binding.btnlogin.setOnClickListener(view -> {
             String password = binding.edPassword.getText().toString().trim();
             String confirmPassword = binding.edConfirmPassword.getText().toString().trim();
-            if (!password.equals(confirmPassword)){
+            if (password.isEmpty() || confirmPassword.isEmpty()) {
+                Toast.makeText(ChangePasswordActivity.this
+                        , "Password or confirm password must not be empty", Toast.LENGTH_LONG).show();
+            } else if (!password.equals(confirmPassword)) {
 
                 Toast.makeText(ChangePasswordActivity.this
-                        , "Both passwords must be identical" , Toast.LENGTH_LONG).show();
-            }else {
-                changePassword(password );
+                        , "Both passwords must be identical", Toast.LENGTH_LONG).show();
+            } else {
+                changePassword(password);
             }
         });
     }
@@ -45,11 +49,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private void changePassword(String password) {
         mUser.updatePassword(password).addOnSuccessListener(unused -> {
             Toast.makeText(ChangePasswordActivity.this
-                    , "Password changed successfully" , Toast.LENGTH_LONG).show();
+                    , "Password changed successfully", Toast.LENGTH_LONG).show();
             finish();
-        }).addOnFailureListener(unused ->{
+        }).addOnFailureListener(unused -> {
             Toast.makeText(ChangePasswordActivity.this
-                    , unused.toString() , Toast.LENGTH_LONG).show();
+                    , unused.toString(), Toast.LENGTH_LONG).show();
 
         });
     }

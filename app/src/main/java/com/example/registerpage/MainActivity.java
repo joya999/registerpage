@@ -91,24 +91,10 @@ public class MainActivity extends BaseActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
     }
 
-    private void signOut() {
-
-        mAuth.signOut();
-        relaunchApp();
-    }
-
-    private void relaunchApp() {
-        finish();
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
 
     ChildEventListener childEventListener = new ChildEventListener() {
         @Override
