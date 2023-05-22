@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView createnewAccount;
     TextView tvFogetPassword;
     EditText inputAcademicemail,inputpassword,inputConfirmPassword;
-    String AcademicemailPattern ="[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    String AcademicemailPattern ="[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+\\.+[a-z]+\\.+[a-z]+";
 
     ProgressDialog progressDialog;
     FirebaseAuth mAuth;
@@ -61,12 +61,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-    }
-
-    private void checkIfLogin() {
-        if (mUser != null){
-            sendUserToNextActivity();
-        }
     }
 
     private void perforLogin() {
