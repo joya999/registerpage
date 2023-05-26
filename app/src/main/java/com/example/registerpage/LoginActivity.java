@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView createnewAccount;
     TextView tvFogetPassword;
+    TextView tvRegister;
     EditText inputAcademicemail,inputpassword,inputConfirmPassword;
     String AcademicemailPattern ="[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+\\.+[a-z]+\\.+[a-z]+";
 
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         inputAcademicemail =findViewById(R.id.inputAcademicemail);
         inputpassword =findViewById(R.id.inputpassword);
         tvFogetPassword =findViewById(R.id.tv_forget);
+        tvRegister =findViewById(R.id.tv_register);
         progressDialog=new ProgressDialog(this);
         mAuth=FirebaseAuth.getInstance();
         mUser= mAuth.getCurrentUser();
@@ -60,6 +62,9 @@ public class LoginActivity extends AppCompatActivity {
             launchForgetPassword();
         });
 
+        tvRegister.setOnClickListener(view -> {
+            launchRegister();
+        });
 
     }
 
@@ -112,6 +117,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private void launchForgetPassword() {
         Intent intent= new Intent(LoginActivity.this, ForgetPasswordActivity.class);
+        startActivity(intent);
+    }
+
+    private void launchRegister() {
+        Intent intent= new Intent(LoginActivity.this, RegisterActivtiy.class);
         startActivity(intent);
     }
 }

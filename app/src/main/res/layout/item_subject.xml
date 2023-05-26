@@ -25,7 +25,7 @@
     <TextView
         android:id="@+id/tv_name"
         app:layout_constraintHorizontal_bias="1"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textColor="@color/black"
         android:text="رياضيات متقطعه"
         app:layout_constraintEnd_toStartOf="@+id/tv_code"
