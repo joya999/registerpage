@@ -83,13 +83,17 @@ public class FilesActivity extends AppCompatActivity {
     }
 
     private void openPdf(String url , String name) {
-        startActivity(
+       /* startActivity(
                 PdfViewerActivity.Companion.launchPdfFromUrl(
                         this, url, name
                         , "",
                         true
                 )
-        );
+        );*/
+
+        Intent intent = new Intent(this , PdfActivity.class);
+        intent.putExtra("url" , url);
+        startActivity(intent);
     }
 
     ChildEventListener childEventListener = new ChildEventListener() {
